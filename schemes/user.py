@@ -11,4 +11,6 @@ class ProfileResponseScheme(BaseModel):
     birthday: datetime.date
     phone: str
     email: EmailStr
+    arcana_num: int
+    arcana_name: str
     type: UserType

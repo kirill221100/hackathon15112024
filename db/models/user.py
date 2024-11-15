@@ -17,4 +17,6 @@ class User(Base):
     birthday: Mapped[datetime.date] = mapped_column(Date, nullable=False)
     email: Mapped[str] = mapped_column(unique=True, nullable=False)
     phone: Mapped[str] = mapped_column(unique=True, nullable=False)
+    arcana_num: Mapped[int] = mapped_column(nullable=False)
+    arcana_name: Mapped[str] = mapped_column(nullable=False)
     type: Mapped[UserType] = mapped_column(String(50), nullable=False)

@@ -7,7 +7,9 @@ from pydantic import EmailStr
 import datetime
 from typing import List
 from schemes.registration import RegisterScheme
+from utils.tarot import arcana
 from security.password import hash_password
+from utils.tarot import calculate_arcana
 
 
 async def get_user_by_username(username: str, session: AsyncSession):
@@ -35,11 +37,11 @@ async def get_user_by_username_or_email(email: EmailStr, username: str, session:
     return (await session.execute(select(User).filter(or_(User.username == username, User.email == email)))).scalar_one_or_none()
 
 async def create_user(reg_data: RegisterScheme, session: AsyncSession):
+    arcana_num = calculate_arcana(reg_data.birthday.day, reg_data.birthday.month, reg_data.birthday.year)
     hashed_password = hash_password(reg_data.password.get_secret_value())
-    print(reg_data.type.value)
     user = User(name=reg_data.name, surname=reg_data.surname, lastname=reg_data.lastname,
                 hashed_password=hashed_password, birthday=reg_data.birthday, email=reg_data.email, phone=reg_data.phone,
-                type=reg_data.type.value)
+                arcana_num=arcana_num, arcana_name=arcana[arcana_num], type=reg_data.type.value)
     session.add(user)
     await session.commit()
     return user

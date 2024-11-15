@@ -9,5 +9,4 @@ registration_router = APIRouter()
 
 @registration_router.post('/', response_model=dict)
 async def registration_path(reg_data: RegisterScheme, session: AsyncSession = Depends(get_session)):
-    print(reg_data)
     return await registration_func(reg_data, session)
