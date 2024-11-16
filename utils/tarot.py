@@ -30,22 +30,31 @@ arcana_interaction = [
         [  3,    2,   2,    3,    3,    2,    2,    3,    2,   2,   3,   2,   2,    1,   3,   2,    1,   3,     2,   3,   3,  0 ]   # Мир              21
     ]
 
+
+def get_compatibility(arc1, arc2):
+    compatibility = arcana_interaction[arc1][arc2]  # отнимаем 1, чтобы не вызывать ошибку индекса
+    if compatibility == 0:
+        return 50
+    else:
+        return 50 + compatibility * 16.6
+
+
 def calculate_arcana(day: int, month: int, year: int):
     a = sum(list(map(int, list(f"{day}{month}{year}"))))
-    if a > 22:
+    if a > 21:
         return a - 22
     return a
 
 def calculate_compatibility_between_two_people(first_arcana: int, second_arcana: int):
     a = first_arcana + second_arcana
-    general_compatibility = a if a <= 22 else a - 22
+    general_compatibility = a if a <= 21 else a - 22
     b = general_compatibility + first_arcana
-    first_perception = b if b <= 22 else b - 22
+    first_perception = b if b <= 21 else b - 22
     c = general_compatibility + second_arcana
-    second_perception = c if c <= 22 else c - 22
+    second_perception = c if c <= 21 else c - 22
     d = general_compatibility + first_perception + second_perception
-    result = d if d <= 22 else d - 22
+    result = d if d <= 21 else d - 22
     return {'general_compatibility': {'num': general_compatibility, 'name': arcana[general_compatibility]},
             'first_perception': {'num': first_perception, 'name': arcana[first_perception]},
             'second_perception': {'num': second_perception, 'name': arcana[second_perception]},
-            'result': {'num': result, 'name': arcana[result]}, 'point_of_compatibility': arcana_interaction[first_arcana][second_arcana]}
+            'result': {'num': result, 'name': arcana[result]}, 'point_of_compatibility': get_compatibility(first_arcana, second_arcana)}
