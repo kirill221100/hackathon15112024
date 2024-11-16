@@ -1,7 +1,8 @@
 from db.db_setup import Base
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import Date, String
-from schemes.registration import UserType
+from sqlalchemy import Date, String, ForeignKey
+from db.models.company import Company
+from db.models.associations import companies_users_association_table
 from typing import List
 import datetime
 
@@ -13,10 +14,6 @@ class User(Base):
     name: Mapped[str] = mapped_column(nullable=False)
     surname: Mapped[str] = mapped_column(nullable=False)
     lastname: Mapped[str] = mapped_column(nullable=True)
-    hashed_password: Mapped[str] = mapped_column(nullable=False)
-    birthday: Mapped[datetime.date] = mapped_column(Date, nullable=False)
+    hashed_password: Mapped[str] = mapped_column(nullable=True)
     email: Mapped[str] = mapped_column(unique=True, nullable=False)
-    phone: Mapped[str] = mapped_column(unique=True, nullable=False)
-    arcana_num: Mapped[int] = mapped_column(nullable=False)
-    arcana_name: Mapped[str] = mapped_column(nullable=False)
-    type: Mapped[UserType] = mapped_column(String(50), nullable=False)
+    companies: Mapped[List[Company]] = relationship(back_populates="admins", secondary=companies_users_association_table)

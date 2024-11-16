@@ -1,16 +1,19 @@
 import datetime
-from schemes.registration import UserType
-from pydantic import BaseModel, EmailStr
+from enum import Enum
+from pydantic import BaseModel, EmailStr, StringConstraints, model_validator, PastDate, Field, SecretStr
+from typing import Annotated, Optional
+from dateutil.relativedelta import relativedelta
 
 
-class ProfileResponseScheme(BaseModel):
+class UserType(Enum):
+    #RECRUITER = 'recruiter'
+    EMPLOYEE = 'employee'
+    CANDIDATE = 'candidate'
+
+
+class UserResponseScheme(BaseModel):
     id: int
     name: str
     surname: str
     lastname: str
-    birthday: datetime.date
-    phone: str
     email: EmailStr
-    arcana_num: int
-    arcana_name: str
-    type: UserType
