@@ -8,7 +8,7 @@ team_router = APIRouter()
 
 @team_router.post('/create_team')
 async def create_team_path(team_data: CreateTeamScheme, current_user=Depends(get_current_user), session=Depends(get_session)):
-    
+    pass
 
 
 @team_router.get('/compatibility-between-two-candidates')
