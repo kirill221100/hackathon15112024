@@ -32,8 +32,8 @@ arcana_interaction = [
 
 def calculate_arcana(day: int, month: int, year: int):
     a = sum(list(map(int, list(f"{day}{month}{year}"))))
-    if a > 21:
-        return a - 21
+    if a > 22:
+        return a - 22
     return a
 
 def calculate_compatibility_between_two_people(first_arcana: int, second_arcana: int):
