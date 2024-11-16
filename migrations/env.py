@@ -7,7 +7,11 @@ from sqlalchemy.engine import Connection
 from alembic import context
 
 from db.models.user import User
-
+from db.models.team import Team
+from db.models.vacancy import Vacancy
+from db.models.candidate import Candidate
+from db.models.employee import Employee
+from db.models.company import Company
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
