@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <!-- Подключение Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: 'Arial', sans-serif;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #d9534f; /* Красный цвет для заголовка */
+            margin-bottom: 20px;
+        }
+        .form-label {
+            font-weight: 600;
+            color: #28a745; /* Зеленый для меток */
+        }
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .form-control:focus {
+            border-color: #ff851b; /* Оранжевый цвет для фокуса */
+            box-shadow: 0 0 5px rgba(255, 133, 27, 0.6);
+        }
+        .btn-submit {
+            background-color: #ff851b;
+            border-color: #ff851b;
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+        }
+        .btn-submit:hover {
+            background-color: #e67e00;
+            border-color: #e67e00;
+        }
+        .password-check {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .alert {
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-container">
+        <div class="form-title">Регистрация</div>
+        <!-- Форма регистрации -->
+        <form action="/registration" method="POST">
+            <!-- Поле Имя -->
+            <div class="mb-3">
+                <label for="name" class="form-label">Имя</label>
+                <input type="text" name="name" id="name" class="form-control" placeholder="Введите ваше имя" required>
+            </div>
+            <!-- Поле Фамилия -->
+            <div class="mb-3">
+                <label for="surname" class="form-label">Фамилия</label>
+                <input type="text" name="surname" id="surname" class="form-control" placeholder="Введите вашу фамилию" required>
+            </div>
+            <!-- Поле Отчество -->
+            <div class="mb-3">
+                <label for="lastname" class="form-label">Отчество</label>
+                <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Введите ваше отчество">
+            </div>
+            <!-- Поле Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Введите ваш email" required>
+            </div>
+            <!-- Поле Пароль -->
+            <div class="mb-3">
+                <label for="password1" class="form-label">Пароль</label>
+                <input type="password" name="password1" id="password1" class="form-control" placeholder="Введите пароль" required>
+            </div>
+            <!-- Поле Повторение пароля -->
+            <div class="mb-3">
+                <label for="password2" class="form-label">Повторите пароль</label>
+                <input type="password" name="password2" id="password2" class="form-control" placeholder="Повторите пароль" required>
+            </div>
+            <!-- Кнопка отправки -->
+            <button type="submit" class="btn btn-submit">Зарегистрироваться</button>
+            <div class="password-check mt-2">
+                <p>Пароль должен содержать минимум 8 символов, включая цифры и специальные знаки.</p>
+            </div>
+        </form>
+    </div>
+
+    <!-- Подключение Bootstrap JS (необязательно для этой формы, но можно для динамических компонентов) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
